@@ -42,4 +42,22 @@ uint32_t millisLastStep = millis();         // variable for the purpose of power
 The constructor. Pass digital pins driving corresponding windings of the motor as the arguments.
 ##### StepMotor4windings::~StepMotor4windings();
 The destructor. Use `delete motor;`
-
+##### bool StepMotor4windings::PowerIsOn();
+##### void StepMotor4windings::powerOff();
+##### bool StepMotor4windings::powerOn(bool waitForPeriod = true);
+##### bool StepMotor4windings::waveStep(int8_t Direction, bool waitForPeriod = true);
+##### bool StepMotor4windings::halfStep(int8_t Direction, bool waitForPeriod = true);
+##### bool StepMotor4windings::fullStep(int8_t Direction, bool waitForPeriod = true);
+##### uint32_t StepMotor4windings::get_usStepMinPeriod();
+##### void StepMotor4windings::set_usStepMinPeriod(uint32_t new_usStepMinPeriod);
+##### bool StepMotor4windings::readyForStep(void);
+    // If readyForStep() returns true there is still small probability that a
+    // *Step() function called right after won't be able to perform a
+    // step immidiately and will determine that it is not a time for step;
+    // that is because of cyclic nature of micros():
+    //                  usLastStepTC|
+    // micros(): 0------------------|xxxx|----------------------------0xFFFFFFFF
+    //                                   |usLastStepTC + usStepMinPeriod
+    // So if it passed about [1 hour 12 minutes] * N since the last step
+    // such thing can happen.
+##### uint32_t StepMotor4windings::usBeforeReadyForStep(void);
