@@ -36,3 +36,7 @@ uint32_t millisLastStep = millis();         // variable for the purpose of power
     // if it's long-enough since the last step then it's okay to switch all the windings of the motor off
     if(motor.PowerIsOn() && millis() - millisLastStep > 5000) motor.powerOff();
 ```
+
+## Description
+#### StepMotor4windings::
+#### StepMotor4windings(byte _pinWindingA, byte _pinWindingB, byte _pinWindingC, byte _pinWindingD);
