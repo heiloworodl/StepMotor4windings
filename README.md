@@ -41,17 +41,18 @@ uint32_t millisLastStep = millis();         // variable for the purpose of power
 ##### StepMotor4windings::StepMotor4windings(byte _pinWindingA, byte _pinWindingB, byte _pinWindingC, byte _pinWindingD);
 The constructor. Pass digital pins driving corresponding windings of the motor as the arguments.
 
-
-
 ##### StepMotor4windings::~StepMotor4windings();
 The destructor. Use `delete motor;`
 
-
-
 ##### bool StepMotor4windings::PowerIsOn();
+Returns true if the motor's power is currently on. Quick execution - just reading the corresponding variable. (The power can be switched off by the powerOff() function. The power can be switched on by the powerOn() function or by any of *Step functions.)
 
 ##### void StepMotor4windings::powerOff();
+Switching the motor's power off. All the windings are getting switched off.
+
 ##### bool StepMotor4windings::powerOn(bool waitForPeriod = true);
+Switching the motor's power on. 
+
 ##### bool StepMotor4windings::waveStep(int8_t Direction, bool waitForPeriod = true);
 ##### bool StepMotor4windings::halfStep(int8_t Direction, bool waitForPeriod = true);
 ##### bool StepMotor4windings::fullStep(int8_t Direction, bool waitForPeriod = true);
