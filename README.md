@@ -13,7 +13,7 @@ void setup() {
   motor.set_usStepMinPeriod(2500);          // setting the min duration between steps to 2500 microseconds
 }
 
-uint32_t millisLastStep = millis();
+uint32_t millisLastStep = millis();         // variable for the purpose of powering the motor off
 
 // in loop():
 
@@ -27,9 +27,9 @@ uint32_t millisLastStep = millis();
 
     uint32_t usBeforeNextStepAllowed = motor.usBeforeReadyForStep();
     if(usBeforeNextStepAllowed <= 500) {        // if it's less than 500 us till next step is allowed
-      motor.waveStep(1, true);                  // then wait for that time ('true') and do the step
-      millisLastStep = millis();
-    }
+      motor.waveStep(1, true);                  // then wait for that time ('true' causes waiting)
+      millisLastStep = millis();                // in order to do the step as sychronously as possible,
+    }                                           // and do the step
     // otherwise, we're free to do some other work waiting for the next step's time
 
 // powering off
