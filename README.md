@@ -56,6 +56,7 @@ Switching the motor's power on. If the function succeeds the windings' last ON s
 #### bool StepMotor4windings::waveStep(int8_t Direction, bool waitForPeriod = true);
 #### bool StepMotor4windings::halfStep(int8_t Direction, bool waitForPeriod = true);
 #### bool StepMotor4windings::fullStep(int8_t Direction, bool waitForPeriod = true);
+The functions to do steps. The functions can do only one step at a time. The Direction argument determines the direction the step will be made: positive - one direction, negative - the other; if zero, only the power on/off state may be affected
 #### uint32_t StepMotor4windings::get_usStepMinPeriod();
 #### void StepMotor4windings::set_usStepMinPeriod(uint32_t new_usStepMinPeriod);
 #### bool StepMotor4windings::readyForStep(void);
