@@ -44,21 +44,21 @@ The constructor. Pass digital pins driving corresponding windings of the motor a
 #### StepMotor4windings::~StepMotor4windings();
 The destructor. Use `delete motor;`
 
-##### bool StepMotor4windings::PowerIsOn();
+#### bool StepMotor4windings::PowerIsOn();
 Returns true if the motor's power is currently on. Quick execution - just reading the corresponding variable. (The power can be switched off by the powerOff() function. The power can be switched on by the powerOn() function or by any of *Step functions.)
 
-##### void StepMotor4windings::powerOff();
+#### void StepMotor4windings::powerOff();
 Switching the motor's power off. All the windings are getting switched off.
 
-##### bool StepMotor4windings::powerOn(bool waitForPeriod = true);
-Switching the motor's power on. 
+#### bool StepMotor4windings::powerOn(bool waitForPeriod = true);
+Switching the motor's power on. If the function succeeds the windings' last ON state will be restored. If waitForPeriod is true the function waits for the minimal step period (see get_usStepMinPeriod() / set_usStepMinPeriod()) to elapse since the last powering off. If waitForPeriod is false the function checks if the minimal step period already has elapsed since the last powering off; if yes, the function turns the motor's power on, if no, the function fails: the power remains off, the return value is false.
 
-##### bool StepMotor4windings::waveStep(int8_t Direction, bool waitForPeriod = true);
-##### bool StepMotor4windings::halfStep(int8_t Direction, bool waitForPeriod = true);
-##### bool StepMotor4windings::fullStep(int8_t Direction, bool waitForPeriod = true);
-##### uint32_t StepMotor4windings::get_usStepMinPeriod();
-##### void StepMotor4windings::set_usStepMinPeriod(uint32_t new_usStepMinPeriod);
-##### bool StepMotor4windings::readyForStep(void);
+#### bool StepMotor4windings::waveStep(int8_t Direction, bool waitForPeriod = true);
+#### bool StepMotor4windings::halfStep(int8_t Direction, bool waitForPeriod = true);
+#### bool StepMotor4windings::fullStep(int8_t Direction, bool waitForPeriod = true);
+#### uint32_t StepMotor4windings::get_usStepMinPeriod();
+#### void StepMotor4windings::set_usStepMinPeriod(uint32_t new_usStepMinPeriod);
+#### bool StepMotor4windings::readyForStep(void);
     // If readyForStep() returns true there is still small probability that a
     // *Step() function called right after won't be able to perform a
     // step immidiately and will determine that it is not a time for step;
@@ -68,4 +68,4 @@ Switching the motor's power on.
     //                                   |usLastStepTC + usStepMinPeriod
     // So if it passed about [1 hour 12 minutes] * N since the last step
     // such thing can happen.
-##### uint32_t StepMotor4windings::usBeforeReadyForStep(void);
+#### uint32_t StepMotor4windings::usBeforeReadyForStep(void);
