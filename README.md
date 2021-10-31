@@ -38,5 +38,8 @@ uint32_t millisLastStep = millis();         // variable for the purpose of power
 ```
 
 ## Description
-#### StepMotor4windings::
-#### StepMotor4windings(byte _pinWindingA, byte _pinWindingB, byte _pinWindingC, byte _pinWindingD);
+##### StepMotor4windings::StepMotor4windings(byte _pinWindingA, byte _pinWindingB, byte _pinWindingC, byte _pinWindingD);
+The constructor. Pass digital pins driving corresponding windings of the motor as the arguments.
+##### StepMotor4windings::~StepMotor4windings();
+The destructor. Use `delete motor;`
+
