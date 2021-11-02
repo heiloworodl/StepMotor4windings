@@ -67,6 +67,7 @@ If an MCU switches steps for a step motor too quickly the motor becomes unrespon
 
 #### bool StepMotor4windings::readyForStep(void);
 If an MCU switches steps for a step motor too quickly the motor becomes unresponsive to the steps. This class doesn't allow to make another step if a minimal timeout between steps (or Minimal Step Period) hasn't elapsed since the last step. This function returns true if it's long enough since the last step to perform another one, and false otherwise. (You can set the value of the minimal timeout between steps by set_usStepMinPeriod function.) The return value of true doesn't guarantee that a *Step() function called right after would determine that it can perform the step immediately - there is the following comment in this library's code:
+```
     // If readyForStep() returns true there is still small probability that a
     // *Step() function called right after won't be able to perform a
     // step immidiately and will determine that it is not a time for step;
@@ -76,6 +77,7 @@ If an MCU switches steps for a step motor too quickly the motor becomes unrespon
     //                                   |usLastStepTC + usStepMinPeriod
     // So if it passed about [1 hour 12 minutes] * N since the last step
     // such thing can happen.
+```
 
 #### uint32_t StepMotor4windings::usBeforeReadyForStep(void);
 If an MCU switches steps for a step motor too quickly the motor becomes unresponsive to the steps. This class doesn't allow to make another step if a minimal timeout between steps (or Minimal Step Period) hasn't elapsed since the last step. This function returns true if it's long enough since the last step to perform another one, and false otherwise. (You can set the value of the minimal timeout between steps by set_usStepMinPeriod function.) The return value of true doesn't guarantee that a *Step() function called right after would determine that it can perform the step immediately - there is the following comment in this library's code
