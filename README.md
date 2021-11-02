@@ -11,6 +11,7 @@ StepMotor4windings motor(pinA, pinB, pinC, pinD);
 
 void setup() {
   motor.set_usStepMinPeriod(2500);          // setting the min duration between steps to 2500 microseconds
+                                            // (the default is 1700 microseconds)
 }
 
 uint32_t millisLastStep = millis();         // variable for the purpose of powering the motor off
@@ -56,7 +57,8 @@ Switching the motor's power on. If the function succeeds the windings' last ON s
 #### bool StepMotor4windings::waveStep(int8_t Direction, bool waitForPeriod = true);
 #### bool StepMotor4windings::halfStep(int8_t Direction, bool waitForPeriod = true);
 #### bool StepMotor4windings::fullStep(int8_t Direction, bool waitForPeriod = true);
-The functions to do steps. The functions can do only one step at a time. The Direction argument determines the direction the step will be made: positive - one direction, negative - the other; if zero, only the power on/off state may be affected
+The functions to do steps. The functions can do only one step at a time. The Direction argument determines the direction the step will be made: positive - one direction, negative - the other; if zero, only the power on/off state may be affected. If waitForPeriod is true the functions wait for the minimal step period (see get_usStepMinPeriod() / set_usStepMinPeriod()) to elapse since the last step made or the last powering on or off and then perform the step. If waitForPeriod is false the functions check if the minimal step period already has elapsed since the last step or the last powering on or off; if yes, the functions perform the step, if no, the functions fail: the step wouldn't be made, the return value would be false. If the motor's power is off on the call of the functions it doesn't really affect the accomplishment of the step; the phase is changed in accordance to the Direction argument (if Direction == 0 the last phase is to be set
+
 #### uint32_t StepMotor4windings::get_usStepMinPeriod();
 #### void StepMotor4windings::set_usStepMinPeriod(uint32_t new_usStepMinPeriod);
 #### bool StepMotor4windings::readyForStep(void);
